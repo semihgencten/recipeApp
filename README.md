@@ -1,73 +1,175 @@
-# React + TypeScript + Vite
+# 📖 Tarif Defteri (Recipe Book)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, mobile-friendly recipe management app built with React, TypeScript, and Tailwind CSS. Store your favorite recipes locally in your browser - no server required!
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 📱 **Mobile-First Design** - Optimized for mobile browsers
+- 🗂️ **Category Organization** - Organize recipes into 5 categories:
+  - Çorbalar (Soups)
+  - Tatlılar (Desserts)
+  - Yemek (Main Dishes)
+  - Salata (Salads)
+  - Meze (Appetizers)
+- 🔍 **Filter by Category** - Quick filtering with dropdown menu
+- ➕ **Easy Recipe Creation** - Simple form to add new recipes
+- 💾 **Local Storage** - All data saved in browser (no server needed)
+- 🗑️ **Delete Recipes** - Remove recipes you no longer need
+- 📝 **Detailed View** - See full ingredients and cooking instructions
+- 🇹🇷 **Turkish Interface** - Full Turkish language support
 
-## React Compiler
+## 🚀 Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js (v16 or higher)
+- pnpm (recommended) or npm
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Installation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. **Clone the repository**
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+3. **Run the development server**
+   ```bash
+   pnpm dev
+   ```
+
+4. **Open in browser**
+   - Navigate to `http://localhost:5173`
+   - The app is now running!
+
+### Build for Production
+
+```bash
+pnpm build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The optimized production build will be in the `dist` folder.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Preview Production Build
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm preview
 ```
+
+## 🛠️ Technology Stack
+
+- **React 18** - UI library
+- **TypeScript** - Type-safe development
+- **Vite** - Fast build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **Lucide React** - Beautiful icon library
+- **LocalStorage API** - Browser-based data persistence
+
+## 📱 Usage
+
+### Adding a Recipe
+
+1. Click the **+** button in the bottom-right corner
+2. Select a category from the dropdown
+3. Enter the recipe name (Tarif Adı)
+4. Add ingredients (Malzemeler) - one per line recommended
+5. Write cooking instructions (Hazırlanışı)
+6. Click **Tarifi Kaydet** to save
+
+### Viewing Recipes
+
+- All recipes are displayed on the main screen
+- Click on any recipe card to view full details
+- Use the category dropdown filter to show specific categories
+- Select "Tümü" to show all recipes
+
+### Deleting a Recipe
+
+1. Click on a recipe to open detail view
+2. Click the trash icon in the top-right corner
+3. Confirm deletion
+
+## 📂 Project Structure
+
+```
+recipe-app/
+├── src/
+│   ├── App.tsx          # Main application component
+│   ├── main.tsx         # Application entry point
+│   ├── index.css        # Tailwind CSS imports
+│   └── vite-env.d.ts    # Vite type definitions
+├── public/              # Static assets
+├── index.html           # HTML template
+├── package.json         # Dependencies and scripts
+├── tailwind.config.js   # Tailwind configuration
+├── postcss.config.js    # PostCSS configuration
+├── tsconfig.json        # TypeScript configuration
+└── vite.config.ts       # Vite configuration
+```
+
+## 🎨 Customization
+
+### Changing Categories
+
+Edit the `categories` array in `src/App.tsx`:
+
+```typescript
+const categories: Category[] = ['Çorbalar', 'Tatlılar', 'Yemek', 'Salata', 'Meze'];
+```
+
+### Changing Theme Colors
+
+The app uses Tailwind's `emerald` color palette. To change:
+
+1. Open `src/App.tsx`
+2. Find and replace `emerald-` with another color (e.g., `blue-`, `purple-`, `rose-`)
+
+### Adding New Fields
+
+To add new fields to recipes:
+
+1. Update the `Recipe` interface
+2. Add the field to `formData` state
+3. Add input field in the create screen
+4. Display the field in the detail view
+
+## 💾 Data Storage
+
+All recipes are stored in the browser's `localStorage` under the key `recipes`. Data persists across sessions but is specific to:
+- The browser being used
+- The domain/URL where the app is hosted
+
+**Note:** Clearing browser data will delete all recipes.
+
+## 🌐 Browser Compatibility
+
+- ✅ Chrome/Edge (v90+)
+- ✅ Firefox (v88+)
+- ✅ Safari (v14+)
+- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
+
+## 📝 License
+
+MIT License - feel free to use this project for personal or commercial purposes.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest new features
+- Submit pull requests
+
+## 🙏 Acknowledgments
+
+- Icons by [Lucide](https://lucide.dev/)
+- Built with [Vite](https://vitejs.dev/)
+- Styled with [Tailwind CSS](https://tailwindcss.com/)
+
+## 📞 Support
+
+If you encounter any issues or have questions, please open an issue on GitHub.
+
+---
+
+**Happy Cooking! 🍳👨‍🍳**
