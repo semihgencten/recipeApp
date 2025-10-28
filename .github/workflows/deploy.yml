@@ -1,0 +1,35 @@
+name: Deploy recipeApp to Github Pages
+
+on:
+  workflow-dispatch:
+  push:
+    branches:
+      - main
+
+job:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repo
+      - name: Checkout code
+        uses: actions/checkout@3
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@3
+        with:
+          node-version: 22
+      # Install Dependencies
+      - name: Install Dependencies
+        uses: pnpm install
+
+      # Build project
+      - name: Build project
+        uses: pnpm build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
