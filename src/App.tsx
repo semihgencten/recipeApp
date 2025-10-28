@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Plus, ArrowLeft, Trash2 } from 'lucide-react';
 
 type Category = 'Çorbalar' | 'Tatlılar' | 'Yemek' | 'Salata' | 'Meze';
