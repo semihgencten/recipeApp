@@ -1,4 +1,4 @@
-name: Deploy recipeApp to Github Pages
+name: Deploy recipeApp to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -13,23 +13,30 @@ jobs:
     steps:
       # Checkout the repo
       - name: Checkout code
-        uses: actions/checkout@3
+        uses: actions/checkout@v3
 
       # Setup Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@3
+        uses: actions/setup-node@v3
         with:
           node-version: 22
+          cache: 'pnpm'
+
+      # Install pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       # Install Dependencies
-      - name: Install Dependencies
-        uses: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
       # Build project
       - name: Build project
-        uses: pnpm build
+        run: pnpm build
 
+      # Deploy to GitHub Pages
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist
+          publish_dir: ./dist
