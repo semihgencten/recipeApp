@@ -1,43 +1,28 @@
-name: Deploy recipeApp to GitHub Pages
+- name: Checkout code
+  uses: actions/checkout@v3
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+# 1️⃣ Setup pnpm FIRST
+- name: Setup pnpm
+  uses: pnpm/action-setup@v2
+  with:
+    version: 9
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# 2️⃣ THEN setup Node with caching
+- name: Setup Node.js
+  uses: actions/setup-node@v3
+  with:
+    node-version: 22
+    cache: 'pnpm'
 
-jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
+# Continue with install/build/deploy
+- name: Install dependencies
+  run: pnpm install
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+- name: Build project
+  run: pnpm build
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 22
-          cache: 'pnpm'
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build project
-        run: pnpm build
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    publish_dir: ./dist
