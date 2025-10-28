@@ -1,7 +1,7 @@
 name: Deploy recipeApp to Github Pages
 
 on:
-  workflow-dispatch:
+  workflow_dispatch:
   push:
     branches:
       - main
