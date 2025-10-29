@@ -2,6 +2,8 @@
 
 A simple, mobile-friendly recipe management app built with React, TypeScript, and Tailwind CSS. Store your favorite recipes locally in your browser - no server required!
 
+Visit: https://semihgencten.github.io/recipeApp/ to use it
+
 ## ✨ Features
 
 - 📱 **Mobile-First Design** - Optimized for mobile browsers
@@ -27,6 +29,7 @@ A simple, mobile-friendly recipe management app built with React, TypeScript, an
 
 ### Installation
 
+App is deployed to gh-pages but if you install, try and contribute then you can install by following these steps
 1. **Clone the repository**
 
 2. **Install dependencies**
